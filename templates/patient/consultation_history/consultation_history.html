@@ -1,0 +1,72 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<br>
+<center>
+  <h3> Histórico de Consultas </h3>
+</center>
+<div class="container  mt-5 mb-3">
+  <br>
+  <table id="myTable" class="table table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nombre del Doctor</th>
+        <th>Correo</th>
+        <th>Ver Perfil del Doctor</th>
+        <th>Nombre de la enfermedad</th>
+        <th>Fecha de consulta</th>
+        <th>Estado de consulta</th>
+        <th>Resumen de Consulta</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in consultation %}
+      <tr>
+        <td>{{i.doctor.name}}</td>
+        <td>{{i.doctor.user.email}}</td>
+        <td>
+          <form action="{% url 'dviewprofile' i.doctor.user.username %}" method="GET">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">ver perfil</button>
+          </form>
+        </td>
+        <td>{{i.diseaseinfo.diseasename}}</td>
+        <td>{{i.consultation_date}}</td>
+        <td>{{i.status}}</td>
+        <td>
+          <form action="{% url 'consultationview' i.id %}" method="GET">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary"> Consulta</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+  });
+</script>
+
+{% endblock %}

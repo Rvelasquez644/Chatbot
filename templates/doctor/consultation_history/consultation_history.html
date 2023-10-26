@@ -1,0 +1,84 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+{% block head %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+  rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<br>
+<center>
+  <h3> Histórico de Consultas </h3>
+</center>
+<div class="container  mt-5 mb-3">
+  <br>
+  <table class="table table-hover table-bordered dataTable">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nombre del paciente</th>
+        <th>Correo</th>
+        <th>Ver Perfil Paciente</th>
+        <th>Enfermedad Predicha</th>
+        <th>Fecha de Consulta</th>
+        <th>Estado de Consulta</th>
+        <th>Resumen de Consulta</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in consultation %}
+      <tr>
+        <td>{{i.patient.name}}</td>
+        <td>{{i.patient.user.email}}</td>
+        <td style="width: 200px;">
+          <form action="{% url 'pviewprofile' i.patient.user.username %}" method="GET">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">ver perfil</button>
+          </form>
+        </td>
+        <td>{{i.diseaseinfo.diseasename}}</td>
+        <td>{{i.consultation_date}}</td>
+        <td>{{i.status}}</td>
+        <td>
+          <form action="{% url 'consultationview' i.id %}" method="GET">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary"> Consulta</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.dataTable').DataTable( {
+      dom: 'Bfrtip',
+      buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+    });
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+patient:
+erick
+Erick
+
+Medico
+admin
+Admin
+
+para correr el programa: 
+python manage.py runserver

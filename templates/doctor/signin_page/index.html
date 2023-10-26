@@ -1,0 +1,60 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container-singin center">
+	<div class="card">
+		<div class="card-content">
+			<form action="sign_in_doctor" method="POST">
+
+				{% csrf_token %}
+
+				<span class="card-title">Médico</span>
+
+				<!-- Your form content here -->
+
+				<div class="input-field">
+					<input class="validate" type="text" id="username" name="username">
+					<label for="username">Usuario</label>
+				</div>
+				<div class="input-field">
+					<input class="validate" type="password" id="password" name="password">
+					<label for="password">Password</label>
+				</div>
+
+				<center>
+					<div>
+						{% for message in messages %}
+						<h3 style="color: red;">{{message}}</h3>
+						{% endfor %}
+					</div>
+				</center>
+
+				<div class="card-action">
+					<button class="btn waves-effect waves-light" type="submit">
+						Login
+					</button>
+				</div>
+		</div>
+
+		<div class="card-resgiter">
+			<span class="txt1 p-b-17">
+				No tienes con una cuenta?
+			</span>
+
+			<a href="signup_doctor" class="txt2">
+				Registrate
+			</a>
+		</div>
+
+		</form>
+	</div>
+</div>
+</div>
+
+<div id="dropDownSelect1"></div>
+
+
+{% endblock %}

@@ -1,0 +1,112 @@
+
+#hero {
+  background-image: url('image2.jpg');
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  text-align: center;
+}
+
+#hero h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: rgb(44, 44, 46);
+}
+
+#hero p {
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: rgb(44, 44, 46);;
+}
+
+/* Estilos para la sección Acerca de */
+#about {
+  padding: 48px 0;
+  background-color: #f9f9f9;
+}
+
+#about h2 {
+  font-size: 36px;
+  margin-bottom: 24px;
+}
+
+#about p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Page Footer */
+.footer1 {
+    /* position: fixed; */
+    bottom: 0;
+    width:100%;
+    background-color: rgb(10, 138, 201);
+    color: #ffffff;
+    padding: 24px 0;
+  }
+
+  .i{
+    color: white;
+  }
+
+  .footer1 h4 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.footer1 p {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.pfooter1 a {
+  color: #ffffff;
+}
+
+  #btnfooter {
+    animation: none;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/* Styles Modules Signin */
+.container-singin {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+  }
+
+.card {
+    padding: 20px;
+  }
+
+.card-action {
+    margin-top: 20px;
+  }
+
+.card-action input[type="submit"] {
+    margin-top: 10px;
+  }
+
+.card-action a {
+    margin-top: 10px;
+    display: block;
+  }
+
+.container-signup {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+} 
+
+/* Information Page */
+#PatientPro {
+  align-items: center;
+  text-align: center;
+  align-content: center;
+}

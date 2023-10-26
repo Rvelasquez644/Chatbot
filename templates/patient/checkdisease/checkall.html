@@ -1,0 +1,114 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block body %}
+
+<style >
+     .main-form {
+        /* width: 800px; */
+        margin: auto;
+        background-color: rgb(0, 0, 0, 0.2);
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 20px;
+        color: #FFFFFF;
+    }
+
+    .main-form label {
+        color: rgb(6, 6, 6);
+    }
+</style>
+
+<div class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class=" center-align">
+            <h3>Detección del Cancer de Mama</h3>
+        </div>
+        <div>
+            <a href="#" class="waves-effect waves-light btn">Ingrese sus datos</a>
+        </div>
+            <form action='resultbc' class='main-form' method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="firstname" type="text" name="firstname" class="validate" required>
+                        <label for="firstname">Nombre</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="lastname" type="text" name="lastname" class="validate" required>
+                        <label for="lastname">Apellido</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="phone" type="number" name="phone" class="validate" required>
+                        <label for="phone">Número de Telefono</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="email" type="email" name="email" class="validate" required>
+                        <label for="email">Correo</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <select id="gender" name="gender" required>
+                            <option value="" disabled selected>Género</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                        <label for="gender">Género</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="age" type="number" name="age" class="validate" required>
+                        <label for="age">Edad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="concave_points_mean" type="number" step="any" name="concave_points_mean"
+                            class="validate" required>
+                        <label for="concave_points_mean">Media de puntos cóncavos</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="area_mean" type="number" step="any" name="area_mean" class="validate" required>
+                        <label for="area_mean">Media del Área</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m4">
+                        <input id="radius_mean" type="number" step="any" name="radius_mean" class="validate" required>
+                        <label for="radius_mean">Radio Medio</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input id="perimeter_mean" type="number" step="any" name="perimeter_mean" class="validate"
+                            required>
+                        <label for="perimeter_mean">Media del Perímetro</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input id="concavity_mean" type="number" step="any" name="concavity_mean" class="validate"
+                            required>
+                        <label for="concavity_mean">Media de Concavidad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6 offset-m3 center-align">
+                        <button type='submit' class='btn btn-outline-success'
+                            style='width:100%;margin-top: 30px;'>Analizar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+
+
+    {% endblock %}

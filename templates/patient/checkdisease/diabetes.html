@@ -1,0 +1,132 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block body %}
+
+<style >
+    .main-form {
+        /* width: 800px; */
+        margin: auto;
+        background-color: rgb(0, 0, 0, 0.2);
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 20px;
+        color: #FFFFFF;
+    }
+
+    .form-group {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .main-form label {
+        color: rgb(6, 6, 6);
+    }
+</style>
+
+<div class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class="center-align">
+            <h3>Diabetes Detection</h3>
+        </div>
+        <div class="">
+            <a href="#" class="waves-effect waves-light btn">Ingrese sus datos</a>
+        </div>
+        <form action='resultd' class='main-form needs-validation' method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <label for="firstname">Nombre</label>
+                    <input type="text" name="firstname" id="firstname" class="form-control" required='True'>
+                </div>
+                <!-- <div class="col"> -->
+                <div class="input-field col s12 m6">
+                    <label for="lastname">Apellido</label>
+                    <input type="text" name="lastname" id="lastname" class="form-control" required='True'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <label for="phone">Teléfono</label>
+                    <input type="number" name="phone" id="phone" class="form-control" required='True'>
+                    <small class='form-text ' style='color: #FFFFFF;'></small>
+                </div>
+                <!-- <div class="row"> -->
+                <!-- <div class="col"> -->
+                <div class="input-field col s12 m6">
+                    <label for="email">Correo</label>
+                    <input type="email" name="email" id="email" class="form-control" required='True'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <!-- <label for="gender">Género</label> -->
+                    <select name="gender" id="gender" class="form-control" required='True'>
+                        <option value="" disabled selected>Género</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>
+                <div class="input-field col s12 m6">
+                    <label for="pregnancies"> No. de embarazos</label>
+                    <input type="number" required='True' name='pregnancies' id='pregnancies' class='form-control'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <label for="glucose">Conc. de glucosa</label>
+                    <input type="number" required='True' name='glucose' id='glucose' class='form-control'>
+                </div>
+
+                <div class="input-field col s12 m6">
+                    <label for="bloodpressure">Presión Sanguínea</label>
+                    <input type="number" required='True' name='bloodpressure' id='bloodpressure' class='form-control'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <label for="skin">Grosor de la Piel</label>
+                    <input type="number" required='True' name='skin' id='skin' class='form-control'>
+                </div>
+                <div class="input-field col s12 m6">
+                    <label for="insulin">Insulina</label>
+                    <input type="number" required='True' name='insulin' id='insulin' class='form-control'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <label for="bmi">IMC</label>
+                    <input type='number' step="any" required='True' name='bmi' id='bmi' class='form-control'>
+                </div>
+                <div class="input-field col s12 m6">
+                    <label for="diabetespedigree">Arbol genealógico de diabetes</label>
+                    <input type="number" step="any" required='True' name='diabetespedigree' id='diabetespedigree'
+                        class='form-control'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 offset-m3 center-align">
+                    <label for="age">Edad</label>
+                    <input type="number" name="age" id="age" class="form-control" required='True'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 offset-m3 center-align">
+                    <button type='submit' class='btn btn-outline-success' style='width:100%;margin-top: 30px;'>
+                        Analizar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

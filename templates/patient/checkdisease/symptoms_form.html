@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="text-align:center;">Liver Disease Prediction</h1>
+    <h5 style="text-align:center;">Please enter the patient details</h5>
+    <form action="{{ url_for('predictliver')}}" method="post" class="form-inline">
+        <fieldset>
+          <div class="tabcontent" id="new">
+              <div class="form-group">
+                <label for="Total Bilirubin">Total Bilirubin</label>
+                <input class="form-control" type="number" id="Total Bilirubin" name="Total Bilirubin" required="required" placeholder="Enter the Total Bilirubin">
+              </div>
+              <div class="form-group">
+                <label for="Direct_Bilirubin">Direct Bilirubin</label>
+                <input class="form-control" type="number" step="any" id="Direct_Bilirubin" name="Direct_Bilirubin" required="required" placeholder="Enter the Direct_Bilirubin">
+              </div>
+              <div class="form-group">
+                <label for="Alkaline_Phosphotase">Alkaline Phosphotase</label>
+                <input class="form-control" type="number" id="Alkaline_Phosphotase" name="Alkaline_Phosphotase" required="required" placeholder="Enter the Alkaline Phosphotase">
+              </div>
+              <div class="form-group">
+                <label for="Alamine_Aminotransferase">Alamine Aminotransferase</label>
+                <input class="form-control" type="number" id="Alamine_Aminotransferase" name="Alamine_Aminotransferase" required="required" placeholder="Enter the Alamine Aminotransferase">
+              </div>
+              <div class="form-group">
+                <label for="Total_Protiens">Total Protiens</label>
+                <input class="form-control" type="number" id="Total_Protiens" name="Total_Protiens" required="required" placeholder="Enter the Total Protiens">
+              </div>
+              <div class="form-group">
+                <label for="Albumin">Albumin</label>
+                <input class="form-control" type="number" id="Albumin" name="Albumin" required="required" placeholder="Enter the Albumin">
+              </div>
+              <div class="form-group">
+                <label for="Albumin_and_Globulin_Ratio">Albumin and Globulin Ratio</label>
+                <input class="form-control" type="number" id="Albumin_and_Globulin_Ratio" name="Albumin_and_Globulin_Ratio" required="required" placeholder="Enter the Albumin and Globulin Ratio">
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary btn-lg">Predict</button>
+        </div>
+      </fieldset>
+    </form>
+{% endblock %}

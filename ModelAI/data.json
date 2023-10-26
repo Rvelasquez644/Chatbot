@@ -1,0 +1,213 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hola",
+        "¿Cómo estás?",
+        "¿Hay alguien ahí?",
+        "Hola",
+        "Buen día"
+      ],
+      "responses": [
+        "Hola, gracias por preguntar",
+        "¡Qué bueno verte de nuevo!",
+        "Hola, ¿en qué puedo ayudarte?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Adiós",
+        "Hasta luego",
+        "Adiós",
+        "Fue agradable hablar contigo, adiós",
+        "Hasta la próxima"
+      ],
+      "responses": [
+        "¡Hasta luego!",
+        "Que tengas un buen día",
+        "¡Adiós! ¡Vuelve pronto!"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Gracias",
+        "Gracias",
+        "Eso es útil",
+        "Genial, gracias",
+        "Gracias por ayudarme"
+      ],
+      "responses": [
+        "¡Feliz de poder ayudar!",
+        "¡En cualquier momento!",
+        "De nada"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "noanswer",
+      "patterns": [],
+      "responses": [
+        "Lo siento, no puedo entenderte",
+        "Por favor, dame más información",
+        "No estoy seguro de entender"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "options",
+      "patterns": [
+        "¿Como puedes ayudarme?",
+        "¿Que puedes hacer?",
+        "¿Que ayuda brindas?",
+        "¿Como puedes ser útil?",
+        "Que sopote tienes?"
+      ],
+      "responses": [
+        "Puedo predecir enfermedades en función de los síntomas que proporciones. También puedo ofrecerte información sobre medicamentos y recomendaciónes. Qué quieres hacer?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "predict_disease",
+      "patterns": [
+        "Predecir enfermedad",
+        "¿Que enfermedad tengo?",
+        "Sintomas",
+        "¿Cual podría ser mi enfermedad?",
+        "Enfermedad"
+
+      ],
+      "responses": [
+        "Por favor, describe los síntomas que estás experimentando."
+      ],
+      "context": ["get_user_symptoms"]
+    },
+    {
+      "tag": "get_user_symptoms",
+      "patterns": [],
+      "responses": [],
+      "context": [""]
+    },    
+    {
+      "tag": "symptoms",
+      "patterns": [
+        "Dolor de cuerpo",
+        "estornudos",
+        "fiebre"
+      ],
+      "responses": [
+        "Podrías estar experimentando los síntomas de un resfriado común. Te recomendaría descansar, beber líquidos calientes, tomar medicamentos para aliviar los síntomas como analgésicos y descongestionantes, y mantener una buena higiene para prevenir la propagación de la enfermedad."
+      ]
+    },
+    {
+      "tag": "diarrhea",
+      "patterns": [
+        "Dolor de estomago",
+        "necesidad de ir al baño"
+      ],
+      "responses": [
+        "Parece que puedes tener diarrea. Es importante mantenerse hidratado bebiendo líquidos como agua, caldo y bebidas electrolíticas. Además, te recomendaría seguir una dieta suave que incluya alimentos como arroz, plátanos, tostadas y pollo hervido. Evita alimentos grasos, picantes y fibrosos. Si la diarrea es persistente o está acompañada de síntomas graves, es importante consultar a un médico."
+      ],
+      "context": ["síntomas de diarrea"]
+    },
+    {
+      "tag": "urinary_infection",
+      "patterns": [
+        "Ardor al orinar",
+        "Necesidad frecuente de orinar",
+        "Orina turbia o con olor fuerte"
+      ],
+      "responses": [
+        "Es posible que estés experimentando los síntomas de una infección urinaria. Es importante buscar atención médica para un diagnóstico adecuado. El médico puede recomendar un análisis de orina y, si se confirma la infección, probablemente te receten antibióticos. Además, beber mucha agua puede ayudar a eliminar las bacterias. No olvides orinar después de tener relaciones sexuales y mantener una buena higiene genital."
+      ],
+      "context": ["síntomas de infección urinaria"]
+    },
+    {
+      "tag": "hypertension",
+      "patterns": [
+        "Dolores de cabeza agudo",
+        "Mareos o vértigo",
+        "Visión borrosa"
+      ],
+      "responses": [
+        "Los síntomas que mencionaste podrían estar relacionados con la hipertensión. Es importante que consultes a un médico para un diagnóstico preciso. Si se confirma la hipertensión, el médico puede recomendarte llevar un estilo de vida saludable que incluya una dieta equilibrada baja en sodio, ejercicio regular, evitar el consumo de alcohol y tabaco, mantener un peso saludable y reducir el estrés. Además, es fundamental tomar los medicamentos recetados y realizar controles regulares de la presión arterial."
+      ],
+      "context": ["síntomas de hipertensión"]
+    },
+    {
+      "tag": "respiratory_infection",
+      "patterns": [
+        "Tos persistente",
+        "Congestión nasal",
+        "Dificultad para respirar"
+      ],
+      "responses": [
+        "Los síntomas que mencionaste podrían indicar una infección respiratoria. Es importante descansar, beber líquidos calientes, evitar cambios bruscos de temperatura y consultar a un médico para recibir un diagnóstico y tratamiento adecuados. Dependiendo de la gravedad de los síntomas, el médico puede recomendar medicamentos para aliviar la tos y la congestión, así como medidas adicionales para el cuidado respiratorio."
+      ],
+      "context": ["síntomas de infección respiratoria"]
+    },
+    {
+      "tag": "acute_tonsillitis",
+      "patterns": [
+        "Dolor de garganta intenso",
+        "Dificultad para tragar",
+        "Ganglios linfáticos inflamados en el cuello"
+      ],
+      "responses": [
+        "Los síntomas que mencionaste pueden ser indicativos de una amigdalitis aguda. Es importante descansar, beber líquidos calientes, hacer gárgaras con agua salada tibia y consultar a un médico. Dependiendo de la gravedad de los síntomas y la causa subyacente, el médico puede recomendar medicamentos para aliviar el dolor y la inflamación, como analgésicos y antibióticos."
+      ],
+      "context": ["síntomas de amigdalitis aguda"]
+    },
+    {
+      "tag": "gastritis",
+      "patterns": [
+        "Dolor o ardor en la parte superior del abdomen",
+        "Sensación de plenitud o hinchazón después de comer",
+        "Náuseas o vómitos"
+      ],
+      "responses": [
+        "Los síntomas que mencionaste podrían estar relacionados con la gastritis. Es importante seguir una dieta suave, evitar alimentos irritantes como café, alcohol y comidas grasas, y consultar a un médico para recibir un diagnóstico y tratamiento adecuados. El médico puede recomendar medicamentos para reducir la producción de ácido en el estómago y aliviar los síntomas. Además, es importante evitar el estrés y mantener hábitos alimentarios saludables."
+      ],
+      "context": ["síntomas de gastritis"]
+    },
+    {
+      "tag": "parasites",
+      "patterns": [
+        "Picazon anal intensa",
+        "Dolor abdominal o cólicos",
+        "Perdida de peso inexplicada"
+      ],
+      "responses": [
+        "Los síntomas que mencionaste podrían estar asociados con una infección por parásitos. Es importante consultar a un médico para un diagnóstico y tratamiento adecuados. El médico puede solicitar pruebas de laboratorio y, si se confirma la presencia de parásitos, recetar medicamentos antiparasitarios. Además, es importante mantener una buena higiene personal, lavarse las manos con frecuencia y evitar el consumo de alimentos y agua contaminados."
+      ],
+      "context": ["síntomas de infección por parásitos"]
+    },
+    {
+      "tag": "malnutrition",
+      "patterns": [
+        "Pérdida de peso significativa",
+        "Debilidad o fatiga extrema",
+        "Falta de apetito"
+      ],
+      "responses": [
+        "Los síntomas que mencionaste podrían ser indicativos de desnutrición. Es importante consultar a un médico o nutricionista para una evaluación y tratamiento adecuados. El médico puede recomendar cambios en la dieta, suplementos nutricionales y abordar las causas subyacentes de la desnutrición. Es fundamental seguir una alimentación equilibrada que incluya una variedad de alimentos nutritivos y asegurarse de obtener las calorías y nutrientes necesarios para mantener una buena salud."
+      ],
+      "context": ["síntomas de desnutrición"]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": [
+        "Lo siento, no puedo entender tu pregunta. Por favor, reformúlala o intenta preguntar de otra manera.",
+        "No puedo proporcionar una respuesta válida en este momento. Por favor, intenta de nuevo más tarde.",
+        "No tengo la información necesaria para responder a eso. ¿Hay algo más en lo que pueda ayudarte?"
+      ],
+      "context": [""]
+    }
+  ]
+}

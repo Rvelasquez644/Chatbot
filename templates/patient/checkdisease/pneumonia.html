@@ -1,0 +1,104 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block body %}
+
+<style>
+    .main-form {
+        /* width: 800px; */
+        margin: auto;
+        background-color: rgb(0, 0, 0, 0.2);
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 20px;
+        color: #FFFFFF;
+    }
+
+    .form-group {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .main-form label {
+        color: rgb(6, 6, 6);
+    }
+</style>
+
+
+<div class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class="center-align">
+            <h3>Detección Neumonía</h3>
+        </div>
+        <div class="">
+            <a href="#" class="waves-effect waves-light btn">Ingrese sus datos</a>
+        </div>
+        <form action='resultp' class='main-form needs-validation' method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <label for="firstname">Nombre</label>
+                    <input type="text" name="firstname" id="firstname" class="validate" required='True'>
+                </div>
+                <div class="input-field col s12 m6">
+                    <label for="lastname">Apellido</label>
+                    <input type="text" name="lastname" id="lastname" class="validate" required='True'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <label for="phone">Teléfono</label>
+                    <input type="number" name="phone" id="phone" class="validate" required='True'>
+                    <!-- <small class='form-text ' style='color: #FFFFFF;'>* Include your area code</small> -->
+                </div>
+                <div class="input-field col s12 m6">
+                    <label for="email">Correo</label>
+                    <input type="email" name="email" id="email" class="validate" required='True'>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <!-- <label for="gender">Género</label> -->
+                    <select name="gender" id="gender" class="validate" required>
+                        <option value="" disabled selected>Género</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>
+                <div class="input-field col s12 m6">
+                    <label for="age">Edad</label>
+                    <input type="number" name="age" id="age" class="validate" required='True'>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s12 m12">
+                    <div class="btn">
+                        <span>Imágen</span>
+                        <input type="file" id="file" name="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Subir su exámen escaneado">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 offset-m3 center-align">
+                    <button type='submit' class='btn btn-outline-success' style='width:100%;margin-top: 30px;'>  Analizar </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

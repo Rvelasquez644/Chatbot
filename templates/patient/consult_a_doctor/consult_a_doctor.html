@@ -1,0 +1,75 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+ 
+{% block head %}
+
+
+{% endblock %}
+
+{% block body %}
+<br><center><h2> Consulte a su Doctor </h2>
+</center>
+<div class="container  mt-5 mb-3">
+<br>       
+
+            <table id="myTable" class="table table-hover table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Nombre Doctor</th>
+                  <th>Especialización</th>
+                  <th>Correo</th>
+                  <!-- <th>Telefono</th> -->
+                  <th>Puntaje</th>
+                  <th>Ver Perfil</th>
+                  <center><th>Consulte</th></center>
+                </tr>
+              </thead>
+
+              <tbody>
+               
+               {% for i in dobj %}               
+               
+                <tr>
+                  <td>{{i.name}}</td>
+                  <td>{{i.specialization}}</td>
+                  <td>{{i.user.email}}</td>
+                  <!-- <td>{{i.user.mobile_no}}</td> -->
+                  <td>{{i.rating}}/5</td>
+                  <td>                  
+                    <form action="{% url 'dviewprofile' i.user.username %}" method="GET">
+                      {% csrf_token %} 
+                       <button type="submit" class="btn btn-primary">ver perfil</button>  
+                    </form>
+                  </td>
+                  <td>                    
+                      <form action="{% url 'make_consultation' i.user.username %}" method="POST">
+                          {% csrf_token %} 
+                           <button type="submit" class="btn btn-primary">Guarde datos y consulte al Doctor</button>  
+                        </form>    
+                  </td>
+                </tr>
+                {% endfor %}              
+              </tbody>
+            </table>
+</div>  
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+  });
+</script>
+{% endblock %}

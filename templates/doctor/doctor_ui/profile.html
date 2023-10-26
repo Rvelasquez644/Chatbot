@@ -1,0 +1,46 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <center>
+    <h3>Perfil Doctor</h3>
+  </center><br>
+  <div class="row center">
+    <div class="col s12 m6 center">
+      <div class="card" style="width: 80%;">
+        <div class="card-image center">
+          <img src="{% static 'homepage/doctor.png' %}">
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Nombre Doctor : {{user.doctor.name}}</h4>
+          <!-- <p class="card-text">Doctor ID - {{user.doctor.user_id}}</p> -->
+          <p class="card-text">correo - {{user.email}}</p>
+        </div>
+        <div class="card-action">
+          <a href="{% url 'dviewprofile' user.username %}" class="btn btn-primary">Ver Perfil</a>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6">
+      <div class="row">
+        <a class="btn btn-outline-info btn-block" href="{% url 'dconsultation_history' %}">ver historico</a><br>
+      </div>
+      <div class="row">
+        <!-- <button class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#myModal-feedback">Give feedbacks </button><br> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+{% endblock %}

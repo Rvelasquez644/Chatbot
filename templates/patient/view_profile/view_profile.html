@@ -1,0 +1,104 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<!-- Content -->
+<div id="content" class="col m12">
+  <div id="content-main">
+    <div class="container center-align">
+      <div class="row">
+        <div class="col s12">
+          <h3 class="center-align">Perfil del Paciente - {{ puser.patient.name }}</h3>
+        </div>
+      </div>
+      <div class="row center">
+        <div class="input-field col s12 m6">
+          <input type="text" name="username" value={{puser.username}} class="validate" maxlength="50" required=""
+            id="id_username">
+          <label for="id_username">Usuario</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input type="text" name="name" value={{puser.patient.name}} class="validate" maxlength="50" required=""
+            id="id_name">
+          <label for="id_name">Nombre</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input type="email" name="email" value={{puser.email}} class="validate" maxlength="100" required=""
+            id="id_email">
+          <label for="id_email">Correo</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input type="text" name="dob" value={{puser.patient.dob|date:'d-m-Y'}} class="datepicker validate" required=""
+            id="id_dob">
+          <label for="id_dob">Fecha Nacimiento</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input type="text" name="address" value={{puser.patient.address}} class="validate" maxlength="100" required=""
+            id="id_address">
+          <label for="id_address">Dirección</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input type="text" name="mobile_no" value={{puser.patient.mobile_no}} class="validate" maxlength="15"
+            required="" id="id_mobile_no">
+          <label for="id_mobile_no">Telefono</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input type="text" name="gender" value={{puser.patient.gender}} class="validate" maxlength="10" required=""
+            id="id_gender">
+          <label for="id_gender">Género</label>
+        </div>
+      </div>
+      {% if request.user.patient %}
+      <div class="row">
+        <div class="col s12">
+          <div class="btn-group center">
+            <button type="button" class="waves-effect waves-light btn" data-toggle="collapse"
+              data-target="#save">Edit</button>
+            <button type="button" id="save" class="waves-effect waves-light btn">Save</button>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <!-- END Content -->
+</div>
+<!-- END Container -->
+
+<script>
+  $(document).ready(function () {
+    $('#save').click(function (event) {
+      dob = document.getElementById('id_dob').value,
+        $.ajax({
+          url: "{% url 'savepdata' puser.username %}",
+          type: "POST",
+          data: {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            "name": document.getElementById('id_name').value,
+            "dob": dob,
+            "gender": document.getElementById('id_gender').value,
+            "address": document.getElementById('id_address').value,
+            "mobile_no": document.getElementById('id_mobile_no').value
+          },
+          success: function () {
+            alert("se realizaron los cambios.")
+          }
+        });
+    });
+  });
+</script>
+
+{% endblock %}

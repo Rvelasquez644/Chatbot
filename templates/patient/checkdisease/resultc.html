@@ -1,0 +1,114 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+{% endblock %}
+
+{% block body %}
+
+<script type="text/javascript" language="JavaScript">
+    window.onload = function () {
+    document.getElementById("download")
+        .addEventListener("click", () => {
+            const invoice = this.document.getElementById("assess");
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: 1,
+                filename: 'Resultado.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+   }
+   </script>
+
+<style>
+    body::before {
+        content: "";
+        position: fixed;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url(static/result.png);
+        opacity: 0.5;
+        background-position: center;
+        background-size: cover;
+        font-family: sans-serif;
+        /* margin-top: 40px; */
+
+    }
+
+    .regform {
+        /* width: 800px; */
+        background-color: rgba(253, 252, 252, 0.8);
+        /* margin: auto; */
+        color: #0f0f0f;
+        padding: 10px 0px 10px 0px;
+        text-align: center;
+        border-radius: 15px 15px 0px 0px;
+
+    }
+
+    .main-form {
+        /* width: 800px; */
+        /* margin: auto; */
+        background-color: rgb(0, 0, 0, 0.7);
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 20px;
+        color: #FFFFFF;
+    }
+
+    .form-group {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+<div class="content">
+    <div class="row">
+        <div class="col s12 m6 offset-m3">
+            <div class='regform mt-3'>
+                <h3>Resultado de Covid-19</h3>
+            </div>
+            <div id="assess" class="main-form">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <img src="static/uploads/{{filename}}"
+                            style='width: 100%; max-width: 250px; height: auto; margin-top: 30px; margin-bottom: 30px;'>
+                    </div>
+                    <div class="col s12 m6" style='margin-top: 30px; margin-bottom: 30px;'>
+                        <p>Nombre: {{firstname}}</p>
+                        <p>Apellido: {{lastname}}</p>
+                        <p>Edad: {{age}}</p>
+                        <p>Género: {{gender}}</p>
+
+                        {% if pred == 1 %}
+                        <div>
+                            <p>Resultado: <i>NEGATIVO COVID</i></p>
+                        </div>
+                        {% else %}
+                        <div>
+                            <p>Resultado: <i>POSITIVO COVID</i></p>
+                        </div>
+                        {% endif %}
+                        <button id="download">Descargar PDF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

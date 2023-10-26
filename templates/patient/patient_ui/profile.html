@@ -1,0 +1,122 @@
+{% include 'navigation.html' %}
+{% include "basic.html" %}
+{% load static %}
+
+
+{% block head %}
+<style>
+  #chatbot-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  #chatbot-modal.open {
+    display: block;
+  }
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div id="PatientPro" class="container">
+  <center>
+    <h3>Perfil Paciente</h3>
+  </center><br>
+  <div class="row center">
+    <div class="col s12 m6 valign-wrapper center-align">
+      <div class="card" style="width: 80%;">
+        <div class="card-image center">
+          <img class="responsive-img" src="{% static 'homepage/patient.png' %}" class="center-align">
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Nombre Paciente : {{puser.patient.name}}</h4>
+          <!-- <p class="card-text"> ID - {{puser.patient.user_id}}</p> -->
+          <p class="card-text"> correo - {{puser.email}}</p>
+        </div>
+        <div class="card-action">
+          <a href="{% url 'pviewprofile' puser.username %}" class="btn btn-success green">Ver Perfil</a>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6">
+      <div class="row">
+        <a id="links" class="btn btn-outline-info btn-block" href="{% url 'checkdisease' %}">Análisis Médico General
+        </a><br>
+      </div>
+      <div class="row">
+        <a id="links" class="btn btn-outline-info btn-block" href="{% url 'checkall' %}">Análisis Cancer de Mama
+        </a><br>
+      </div>
+      <div class="row">
+        <a id="links" class="btn btn-outline-info btn-block" href="{% url 'covid' %}">Análisis Covid </a><br>
+      </div>
+      <div class="row">
+        <a id="links" class="btn btn-outline-info btn-block" href="{% url 'pneumonia' %}">Análisis Neumonía </a><br>
+      </div>
+      <div class="row">
+        <a id="links" class="btn btn-outline-info btn-block" href="{% url 'diabetes' %}">Análisis Diabetes </a><br>
+      </div>
+      <div class="fixed-action-btn">
+        <a class="btn-floating btn-large blue" id="chatbot-btn">
+          <i class="large material-icons">chat</i>
+          <span style="margin-left: 5px;">Chatbot</span>
+        </a>
+      </div>
+      <div class="row">
+        <a class="btn btn-outline-info btn-block blue" href="{% url 'pconsultation_history' %}">ver historico</a><br>
+      </div>
+      <div class="row">
+        <!-- <button class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#myModal-feedback">Give feedbacks -->
+        </button><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="chat-window" class="chat-window">
+  <!-- Contenido de la ventana emergente -->
+</div>
+
+<script>
+  const chatbotBtn = document.getElementById('chatbot-btn');
+  const chatWindow = document.getElementById('chat-window');
+
+  chatbotBtn.addEventListener('click', toggleChatWindow);
+
+  function toggleChatWindow() {
+    chatWindow.classList.toggle('open');
+    window.location.href = "{% url 'chatbot' %}";
+  }
+</script>
+
+<!-- <script>
+  $(document).ready(function () {
+    $('#submit').click(function (event) {
+      $.ajax({
+        url: "{% url 'post_feedback' %}",
+        type: "POST",
+        data: {
+          feedback: $('#feedback').val(),
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        },
+        success: function (data) {
+          alert(data);
+        }
+      });
+    });
+  });
+</script> -->
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% load static %}
+
+<style>
+  #textLogo {
+    font-size: 18px;
+  }
+</style>
+
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="{% url 'sign_in_doctor' %}">Médico</a></li>
+  <li class="divider"></li>
+  <li><a href="{% url 'sign_in_patient' %}">Paciente</a></li>
+</ul>
+
+<ul id="dropdown3" class="dropdown-content">
+  <li><a href="{% url 'signup_doctor' %}">Médico</a></li>
+  <li class="divider"></li>
+  <li><a href="{% url 'signup_patient' %}">Paciente</a></li>
+</ul>
+
+<div class="navbar-fixed">
+  <nav id="navbar" class="#304ffe indigo accent-4">
+    <div class="nav-wrapper container">
+      <a id="btnNavbar" href="#!" class="brand-logo"><h4 id="textLogo">Centro de Convergencia San Carlos</h4> </a>
+      <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a id="btnNavbar" href="{% url 'home' %}">Principal</a></li>
+        
+        <!-- <li>
+          <a class="dropdown-trigger" href="#!" data-target="dropdown1">Iniciar Sesion<i class="material-icons right">arrow_drop_down</i></a>
+        </li>
+        <li><a href="{% url 'home' %}">Registrarse</a></li> -->
+
+        {% if user.is_authenticated %}
+        {% if user.patient %}
+        <li href="{% url 'patient_ui' %}" style="color: rgb(91, 252, 50);">Hola,
+          {{user.patient.name}}</li>
+        </li>
+        <li>
+          <a href="{% url 'patient_ui' %}">Tablero</a>
+        </li>
+        {% endif %}
+
+        {% if user.doctor %}
+        <li href="{% url 'doctor_ui' %}" style="color: rgb(91, 252, 50);">Hola, Dr.
+          {{user.doctor.name}}</li>
+        </li>
+        <li>
+          <a href="{% url 'doctor_ui' %}">Tablero</a>
+        </li>
+        {% endif %}
+        <li>
+          <a class="btn red" href="{% url 'logout' %}" style="color: rgb(247, 190, 188);">Cerrar Sesion</a>
+        </li>
+
+        {% else %}
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="dropdown1">Iniciar Sesion<i
+              class="material-icons right">arrow_drop_down</i></a>
+        </li>
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="dropdown3">Registrarse<i
+              class="material-icons right">arrow_drop_down</i></a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<ul id="dropdown2" class="dropdown-content">
+  <li><a href="{% url 'sign_in_doctor' %}">Médico</a></li>
+  <li><a href="{% url 'sign_in_patient' %}">Paciente</a></li>
+  <li class="divider"></li>
+</ul>
+<ul id="dropdown4" class="dropdown-content">
+  <li><a href="{% url 'signup_doctor' %}">Médico</a></li>
+  <li><a href="{% url 'signup_patient' %}">Paciente</a></li>
+  <li class="divider"></li>
+</ul>
+
+<ul class="sidenav" id="menu-responsive">
+  <li><a href="{% url 'home' %}">Principal</a></li>
+  <li><a href="{% url 'home' %}">Contacto</a></li>
+  <li><a href="{% url 'home' %}">Acerca</a></li>
+
+  {% if user.is_authenticated %}
+  {% if user.patient %}
+  <li href="{% url 'patient_ui' %}" style="color: rgb(91, 252, 50);">Hola,
+    {{user.patient.name}}</li>
+  </li>
+  <li>
+    <a href="{% url 'patient_ui' %}">Tablero</a>
+  </li>
+  {% endif %}
+  {% if user.doctor %}
+  <li href="{% url 'doctor_ui' %}" style="color: rgb(91, 252, 50);">Hola, Dr.
+    {{user.doctor.name}}</li>
+  </li>
+  <li>
+    <a href="{% url 'doctor_ui' %}">Tablero</a>
+  </li>
+  {% endif %}
+  <li>
+    <a class="btn red" href="{% url 'logout' %}" style="color: rgb(247, 190, 188);">Cerrar Sesion</a>
+  </li>
+  {% else %}
+  <li>
+    <a class="dropdown-trigger" href="#!" data-target="dropdown2">Iniciar Sesion<i
+        class="material-icons left">arrow_drop_down</i></a>
+  </li>
+  <li>
+    <a class="dropdown-trigger" href="#!" data-target="dropdown4">Registrarse<i
+        class="material-icons left">arrow_drop_down</i></a>
+  </li>
+  {% endif %}
+
+</ul>
